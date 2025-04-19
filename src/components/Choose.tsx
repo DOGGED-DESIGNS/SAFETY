@@ -63,11 +63,13 @@ export default function Choose() {
           </div>
 
           <div className=" ">
-            <div className=" relative w-full lg:h-[600px] h-[400px] ">
+            <div className="  w-full  ">
               <Image
-                alt="image"
-                fill
-                className="object-contain"
+                alt="Hero"
+                width={0}
+                height={0}
+                sizes="100vw" // still needed to help the browser pick the right image
+                className="  select-none w-full h-auto"
                 src={"/chooselatest.png"}
               />
             </div>

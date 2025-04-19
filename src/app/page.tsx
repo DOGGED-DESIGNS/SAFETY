@@ -22,7 +22,7 @@ export default function page() {
 
       <BlogSection />
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

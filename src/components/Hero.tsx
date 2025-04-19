@@ -22,7 +22,11 @@ export default function Hero() {
 
             <div className="mt-8  lg:flex  gap-2 ">
               <div className="lg:flex-1 h-14 my-3">
-                <Input type="search" className="bg-white h-full" />
+                <Input
+                  placeholder="Search Services:(i.e: fire extinguisher)"
+                  type="search"
+                  className="bg-white h-full"
+                />
               </div>
               <div className="h-14">
                 <Button className=" w-full h-full my-3 font-outfit font-bold text-white   bg-safeLightest  hover:bg-safeLight  ">
@@ -34,12 +38,14 @@ export default function Hero() {
           </div>
 
           <div className="  h-full">
-            <div className=" border-dashed border-2 border-safeAccent lg:min-h-[700px] md:min-h-[500] min-h-[300px] relative w-full">
+            <div className=" border-dashed border-2 border-safeWhite lg:min-h-[700px] md:min-h-[500] min-h-[300px] relative w-full">
               <Image
-                className="object-contain"
-                fill
-                src={"/heropng3.png"}
-                alt="image"
+                src="/heropng3.png"
+                alt="Hero"
+                width={0}
+                height={0}
+                sizes="100vw" // still needed to help the browser pick the right image
+                className=" select-none w-full h-auto"
               />
             </div>
           </div>

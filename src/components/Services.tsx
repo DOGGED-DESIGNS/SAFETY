@@ -73,8 +73,8 @@ export default function Services() {
                 </CarouselItem>
                 <CarouselItem className=" min-h-[100px] md:basis-1/2 lg:basis-1/4 ">
                   <div className=" cursor-pointer transition-all duration-300 group py-10 px-3 h-full rounded-md border-2 hover:bg-safeDark  bg-safeWhite border-safeAccent ">
-                    <Firesafety className=" transition-all duration-300 mx-auto  text-safeAccent   h-12 w-12 group-hover:text-safeWhite   fill-current " />
-                    <h1 className=" p mt-5 group-hover:text-white text-safeDark font-medium  transition-all duration-300 text-center ">
+                    <Firesafety className=" select-none transition-all duration-300 mx-auto  text-safeAccent   h-12 w-12 group-hover:text-safeWhite   fill-current " />
+                    <h1 className=" select-none p mt-5 group-hover:text-white text-safeDark font-medium  transition-all duration-300 text-center ">
                       Fire Safety
                     </h1>
                   </div>
