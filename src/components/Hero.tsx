@@ -12,7 +12,7 @@ export default function Hero() {
           <div className="   self-center ">
             <h1 className="h1 mt-10 text-safeWhite  ">
               {" "}
-              Smart, reliable safety solutions built for Africa’s toughest
+              Smart, reliable safety solutions built for Africa&apos;s toughest
               environments
             </h1>
 
