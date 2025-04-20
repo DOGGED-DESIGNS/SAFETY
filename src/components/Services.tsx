@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/carousel";
 import Maxwrapper from "./Maxwrapper";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Services() {
   return (
@@ -45,21 +46,27 @@ export default function Services() {
               <CarouselContent>
                 {/* beginning */}
                 <CarouselItem className=" min-h-[100px] md:basis-1/2 lg:basis-1/4 ">
-                  <div className=" cursor-pointer transition-all duration-300 group py-10 px-3 h-full rounded-md border-2 hover:bg-safeDark  bg-safeWhite border-safeAccent ">
-                    <Supression className=" transition-all duration-300 mx-auto  text-safeAccent   h-12 w-12 group-hover:text-safeWhite   fill-current " />
-                    <h1 className=" p mt-5 group-hover:text-white text-safeDark font-medium  transition-all duration-300 text-center ">
+                  <Link
+                    href={"#"}
+                    className=" block cursor-pointer transition-all duration-300 group py-10 px-3 h-full rounded-md border-2 hover:bg-safeDark  bg-safeWhite border-safeAccent "
+                  >
+                    <Supression className=" select-none transition-all duration-300 mx-auto  text-safeAccent   h-12 w-12 group-hover:text-safeWhite   fill-current " />
+                    <h1 className=" p mt-5 group-hover:text-white text-safeDark font-medium  transition-all selection: duration-300 text-center ">
                       Automatic Fire Supression
                     </h1>
-                  </div>
+                  </Link>
                 </CarouselItem>
                 {/* beginning */}
                 <CarouselItem className=" min-h-[100px] md:basis-1/2 lg:basis-1/4 ">
-                  <div className=" cursor-pointer transition-all duration-300 group py-10 px-3 h-full rounded-md border-2 hover:bg-safeDark  bg-safeWhite border-safeAccent ">
-                    <Risk className=" transition-all duration-300 mx-auto  text-safeAccent   h-12 w-12 group-hover:text-safeWhite   fill-current " />
-                    <h1 className=" p mt-5 group-hover:text-white text-safeDark font-medium  transition-all duration-300 text-center ">
+                  <Link
+                    href={"/riskquestions"}
+                    className=" block select-none cursor-pointer transition-all duration-300 group py-10 px-3 h-full rounded-md border-2 hover:bg-safeDark  bg-safeWhite border-safeAccent "
+                  >
+                    <Risk className=" select-none transition-all duration-300 mx-auto  text-safeAccent   h-12 w-12 group-hover:text-safeWhite   fill-current " />
+                    <h1 className=" select-none p mt-5 group-hover:text-white text-safeDark font-medium  transition-all duration-300 text-center ">
                       Risk Assesment
                     </h1>
-                  </div>
+                  </Link>
                 </CarouselItem>
                 {/* ending  */}
                 {/* beginning */}

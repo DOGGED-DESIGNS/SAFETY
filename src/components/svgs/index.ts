@@ -6,3 +6,5 @@ export { default as Firesafety } from "./firesafety.svg";
 export { default as Ppe } from "./ppe.svg";
 export { default as Detection } from "./detection.svg";
 export { default as Alarm } from "./alarm.svg";
+export { default as Whatsapp } from "./whatsapp.svg";
+export { default as Use } from "./user.svg";
