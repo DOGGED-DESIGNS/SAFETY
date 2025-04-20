@@ -30,8 +30,9 @@ export default function Choose() {
                     <p className="p  font-semibold ">Reliability</p>
                   </div>
                   <h2 className="  p ">
-                    SimserviceHub offers quality assurance for all Artisan
-                    projects. T & Cs apply
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ducimus enim sequi nisi minima optio dolores aliquid quae
+                    beatae distinctio expedita!
                   </h2>
                 </div>
               </div>
@@ -42,8 +43,10 @@ export default function Choose() {
                     <p className="p  font-semibold ">Reliability</p>
                   </div>
                   <h2 className="  p ">
-                    SimserviceHub offers quality assurance for all Artisan
-                    projects. T & Cs apply
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Repellendus explicabo consequuntur, nisi laboriosam maxime
+                    fugit architecto vero sit vel eos rerum alias esse
+                    distinctio neque minima! Architecto non dolorem ullam!
                   </h2>
                 </div>
               </div>
@@ -54,8 +57,8 @@ export default function Choose() {
                     <p className="p  font-semibold ">Reliability</p>
                   </div>
                   <h2 className="  p ">
-                    SimserviceHub offers quality assurance for all Artisan
-                    projects. T & Cs apply
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Minima ea sint animi nostrum?
                   </h2>
                 </div>
               </div>

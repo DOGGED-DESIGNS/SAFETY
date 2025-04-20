@@ -18,10 +18,14 @@ export default function BlogSection() {
               />
             </div>
             <div className=" px-4">
-              <h4 className=" my-8 h4">Title of blog</h4>
+              <h4 className=" my-8 h4 capitalize ">
+                Why you need a fire alarm system
+              </h4>
               <p className=" p line-clamp-3 text-slate-900">
-                Help us build a trustworthy community by sharing your experience
-                with our tradespeople. Your feedback is invaluable.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Voluptates odit modi dolorem dolore enim in facilis, nobis atque
+                quidem sapiente recusandae quod pariatur inventore, eius non
+                earum tenetur harum suscipit.
               </p>
             </div>
             <div className="mt-8 px-4">
@@ -40,10 +44,15 @@ export default function BlogSection() {
               />
             </div>
             <div className=" px-4">
-              <h4 className=" my-8 h4">Title of blog</h4>
+              <h4 className=" my-8 h4 capitalize">
+                {" "}
+                How to use a fireextinguisher{" "}
+              </h4>
               <p className=" p line-clamp-3 text-slate-900">
-                Help us build a trustworthy community by sharing your experience
-                with our tradespeople. Your feedback is invaluable.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Voluptates odit modi dolorem dolore enim in facilis, nobis atque
+                quidem sapiente recusandae quod pariatur inventore, eius non
+                earum tenetur harum suscipit.
               </p>
             </div>
             <div className="mt-8 px-4">
@@ -62,10 +71,12 @@ export default function BlogSection() {
               />
             </div>
             <div className=" px-4">
-              <h4 className=" my-8 h4">Title of blog</h4>
+              <h4 className=" my-8 h4">Automatic Fire Suppression </h4>
               <p className=" p line-clamp-3 text-slate-900">
-                Help us build a trustworthy community by sharing your experience
-                with our tradespeople. Your feedback is invaluable.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Voluptates odit modi dolorem dolore enim in facilis, nobis atque
+                quidem sapiente recusandae quod pariatur inventore, eius non
+                earum tenetur harum suscipit.
               </p>
             </div>
             <div className="mt-8 px-4">

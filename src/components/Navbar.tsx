@@ -134,6 +134,18 @@ export default function Navbar() {
           >
             <Maxwrapper newClass="">
               <div className="">
+                <Link
+                  href={"#"}
+                  className={buttonVariants({
+                    className:
+                      " h-12 mt-10 w-full transition-all ease-in-out duration-300 group bg-transparent hover:bg-safeDark text-safeLight hover:text-safeWhite hover:border-safeDark border-2 border-safeLight  gap-2 ml-auto p font-bold mr-5 items-center block",
+                    size: "lg",
+                  })}
+                >
+                  <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeWhite   font-extrabold text-safeLight" />{" "}
+                  +234 907 617 6485
+                  {/* <p className=" p font-bold text-safeDark">0976176485</p> */}
+                </Link>
                 <Button className=" text-safeWhite font-bold p hover:text-safeWhite bg-safeLight hover:bg-safeDark mt-5 h-12 w-full">
                   {" "}
                   <GoalIcon /> SignUp with Google{" "}
@@ -197,6 +209,7 @@ export default function Navbar() {
                 {/* <p className=" p font-bold text-safeDark">0976176485</p> */}
               </Link>
             </div>
+
             <Button className=" p font-bold bg-safeLight hover:bg-safeDark h-12">
               SignUp with Google
             </Button>
