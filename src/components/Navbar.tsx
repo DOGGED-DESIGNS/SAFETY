@@ -183,16 +183,16 @@ export default function Navbar() {
 
       <nav className=" sticky bg-safePri/85  backdrop-blur-lg z-[1000]  hidden md:block top-0 w-full  lg:block">
         <div className=" flex items-center md:h-[70px] h-[50px]">
-          <div className=" bg-safeWhite rounded-r-full p-2 ">
-            <div className=" relative h-[50px] w-[200px] ">
+          <Link href={"/"} className=" bg-safeWhite rounded-r-full p-2 ">
+            <span className=" block relative h-[50px] w-[200px] ">
               <Image
                 fill
                 className="object-contain"
                 alt=" logo"
                 src={"/san/logosvg.svg"}
               />
-            </div>
-          </div>
+            </span>
+          </Link>
 
           <div className=" items-center ml-auto mr-6 flex gap-4">
             <div>

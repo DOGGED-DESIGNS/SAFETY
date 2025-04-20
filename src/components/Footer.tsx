@@ -11,9 +11,9 @@ import {
 export default function Footer() {
   return (
     <>
-      <Maxwrapper newClass=" bg-gray-50 py-[100px]">
+      <Maxwrapper newClass=" bg-gray-50 py-[60px]">
         <div className=" flex">
-          <div className="   m-auto gap-7 flex flex-wrap space-x-4">
+          <div className="   m-auto gap-7 flex justify-center flex-wrap space-x-4">
             <Link
               className=" capitalize text-slate-950 hover:text-safeLightest p "
               href={"#"}
@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
         </div>
         <div className=" flex mx-auto max-w-screen-sm ">
-          <div className=" mx-auto gap-5 flex  mt-[50px]">
+          <div className=" mx-auto gap-5 flex  mt-[30px]">
             <Link
               href={"#"}
               className="  group transition-all duration-200 bg-safeWhite hover:bg-safeDark h-12 w-12 rounded-lg flex justify-center items-center"
@@ -70,12 +70,12 @@ export default function Footer() {
         </div>
 
         <div className=" mx-auto mt-[30px] max-w-screen-xl">
-          <div className=" flex">
-            <div className=" m-auto gap-2 flex-wrap  flex">
+          <div className="  flex">
+            <div className=" m-auto justify-center gap-2 flex-wrap  flex">
               <div className=" px-3 border-r-[1px] border-slate-950">
                 <p className=" p">
                   {" "}
-                  inquiries:
+                  Data and Privacy Policy:
                   <Link className=" hover:underline text-safeLight" href={"$"}>
                     {""} info@sanagos.com
                   </Link>
@@ -84,7 +84,7 @@ export default function Footer() {
               <div className=" px-3 border-r-[1px] border-slate-950">
                 <p className=" p">
                   {" "}
-                  inquiries:
+                  General enquiries:
                   <Link className="hover:underline text-safeLight" href={"$"}>
                     {""} info@sanagos.com
                   </Link>
@@ -93,7 +93,7 @@ export default function Footer() {
               <div className=" px-3 border-r-[1px] border-slate-950">
                 <p className=" p">
                   {" "}
-                  inquiries:
+                  Acount Mentenance & IT Request:
                   <Link className="hover:underline text-safeLight" href={"$"}>
                     {""} info@sanagos.com
                   </Link>
@@ -102,7 +102,7 @@ export default function Footer() {
               <div className=" px-3 border-r-[1px] border-slate-950">
                 <p className=" p">
                   {" "}
-                  inquiries:
+                  costomer Service:
                   <Link className="hover:underline text-safeLight" href={"$"}>
                     {""} info@sanagos.com
                   </Link>
