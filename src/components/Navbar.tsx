@@ -24,16 +24,16 @@ export default function Navbar() {
       <nav className="  fixed bg-safePri/85  backdrop-blur-lg z-[1000]  block md:hidden top-0 w-full  lg:hidden  ">
         <Maxwrapper newClass=" relative p-0 sm:p-0 ">
           <div className=" flex items-center md:h-[60px] h-[50px]">
-            <div className=" bg-safeWhite rounded-r-full p-2">
-              <div className=" relative h-[30px] w-[100px] ">
+            <Link href={"/"} className=" bg-safeWhite rounded-r-full p-2">
+              <span className=" block relative h-[30px] w-[100px] ">
                 <Image
                   fill
                   className="object-contain"
                   alt=" logo"
                   src={"/san/logosvg.svg"}
                 />
-              </div>
-            </div>
+              </span>
+            </Link>
 
             <div className=" pr-3 flex items-center gap-4 ml-auto">
               <Link href={"#"}>
@@ -183,7 +183,10 @@ export default function Navbar() {
 
       <nav className=" sticky bg-safePri/85  backdrop-blur-lg z-[1000]  hidden md:block top-0 w-full  lg:block">
         <div className=" flex items-center md:h-[70px] h-[50px]">
-          <Link href={"/"} className=" bg-safeWhite rounded-r-full p-2 ">
+          <Link
+            href={"/"}
+            className=" z-[1000] relative bg-safeWhite rounded-r-full p-2 "
+          >
             <span className=" block relative h-[50px] w-[200px] ">
               <Image
                 fill
