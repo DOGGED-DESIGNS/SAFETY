@@ -4,6 +4,7 @@ import "./globals.css";
 import { constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ContextMain } from "@/context/Context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className=" bg-gray-100">
-        <Navbar />
-        {children}
-        <Footer />
+        <ContextMain>
+          <Navbar />
+          {children}
+          <Footer />
+        </ContextMain>
       </body>
     </html>
   );

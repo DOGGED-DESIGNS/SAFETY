@@ -1,3 +1,4 @@
+"use client";
 import React, { createContext, ReactNode, useContext, useReducer } from "react";
 
 type Service = {
@@ -53,9 +54,9 @@ export const ContextMain = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, SERVICEINITIAL);
 
   return (
-    <ContextProvider.Provider
-      value={{ state, dispatch }}
-    ></ContextProvider.Provider>
+    <ContextProvider.Provider value={{ state, dispatch }}>
+      {children}
+    </ContextProvider.Provider>
   );
 };
 
