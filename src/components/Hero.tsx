@@ -47,7 +47,7 @@ export default function Hero() {
                   className="bg-white h-full"
                 />
                 {fok && (
-                  <ScrollArea className=" border-[1px] border-safeAccent w-full mt-2 rounded-lg z-50 px-3 py-5  bottom-0 bg-safeWhite absolute    h-40 ">
+                  <ScrollArea className=" border-[1px] border-safeAccent w-full mt-2 rounded-lg z-50 px-3 py-8  bottom-0 bg-safeWhite absolute    h-40 ">
                     <div className=" bg-gradient-to-t from-white left-0 h-14 absolute bottom-0 w-full z-[1000]    " />
                     {state.length < 1 ? (
                       <div className=" absolute top-0 left-0 h-full w-full flex items-center justify-center ">
