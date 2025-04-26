@@ -20,7 +20,11 @@ const SERVICEINITIAL: Service[] = [
     link: "#",
   },
   {
-    name: "Sprinklers PPE",
+    name: "Sprinklers",
+    link: "#",
+  },
+  {
+    name: "PPE",
     link: "#",
   },
 ] as const;
@@ -34,7 +38,7 @@ const reducer = (state: Service[], action: Disttype) => {
   switch (action.type) {
     case "SET":
       return SERVICEINITIAL.filter((service) =>
-        service.name.toLowerCase().includes(action.payload)
+        service.name.toLowerCase().includes(action.payload.toLowerCase())
       );
 
     default:
