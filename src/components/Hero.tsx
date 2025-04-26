@@ -54,7 +54,7 @@ export default function Hero() {
                         {" "}
                         <h2 className=" text-safeDark text-center p font-bold">
                           {" "}
-                          No Result
+                          No Result Found
                         </h2>{" "}
                       </div>
                     ) : (
