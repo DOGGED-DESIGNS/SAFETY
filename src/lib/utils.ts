@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 import { Metadata } from "next";
+import { HouseWifi } from "lucide-react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -46,3 +47,28 @@ export function constructMetadata({
     metadataBase: new URL("https://sanagossafety.com/"),
   };
 }
+
+export const blogSeo = ({
+  title = "blog title",
+  description = "description of blog",
+  keywords = ["tech", "eingineering"],
+  image = "/sample",
+  icons = "/favicon.ico",
+}: {
+  title?: string;
+  description?: string;
+  image?: string;
+  icons?: string;
+  keywords?: string[];
+} = {}): Metadata => {
+  return {
+    title,
+    description,
+    keywords,
+  };
+  // openGraph: {
+  //   title,
+  //   description,
+  //   images: [{ url: image }],
+  // },
+};

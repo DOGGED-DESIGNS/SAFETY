@@ -8,3 +8,8 @@ export { default as Detection } from "./detection.svg";
 export { default as Alarm } from "./alarm.svg";
 export { default as Whatsapp } from "./whatsapp.svg";
 export { default as Use } from "./user.svg";
+export { default as Face } from "./facebook.svg";
+export { default as Google } from "./google.svg";
+export { default as Badge } from "./badge.svg";
+export { default as Shield } from "./shield.svg";
+export { default as Googlemain } from "./Googlemain.svg";

@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import Maxwrapper from "./Maxwrapper";
 import Link from "next/link";
+import { Face } from "@/components/svgs";
 import {
   Facebook,
   FacebookIcon,
@@ -62,9 +64,9 @@ export default function Footer() {
             </Link>
             <Link
               href={"#"}
-              className="  group transition-all duration-200 bg-safeWhite hover:bg-safeDark h-12 w-12 rounded-lg flex justify-center items-center"
+              className=" p-2 group transition-all duration-200 bg-safeWhite hover:bg-safeDark h-12 w-12 rounded-lg flex justify-center items-center"
             >
-              <FacebookIcon className=" transition-all duration-200 h-5 w-5 group-hover:text-safeWhite " />
+              <Face className=" fill-current text-safeAccent" />
             </Link>
           </div>
         </div>
@@ -76,7 +78,7 @@ export default function Footer() {
                 <p className=" p">
                   {" "}
                   Data and Privacy Policy:
-                  <Link className=" hover:underline text-safeLight" href={"$"}>
+                  <Link className=" hover:underline text-safeAccent" href={"$"}>
                     {""} info@sanagos.com
                   </Link>
                 </p>
@@ -85,7 +87,7 @@ export default function Footer() {
                 <p className=" p">
                   {" "}
                   General enquiries:
-                  <Link className="hover:underline text-safeLight" href={"$"}>
+                  <Link className="hover:underline text-safeAccent" href={"$"}>
                     {""} info@sanagos.com
                   </Link>
                 </p>
@@ -94,7 +96,7 @@ export default function Footer() {
                 <p className=" p">
                   {" "}
                   Acount Mentenance & IT Request:
-                  <Link className="hover:underline text-safeLight" href={"$"}>
+                  <Link className="hover:underline text-safeAccent" href={"$"}>
                     {""} info@sanagos.com
                   </Link>
                 </p>
@@ -103,7 +105,7 @@ export default function Footer() {
                 <p className=" p">
                   {" "}
                   costomer Service:
-                  <Link className="hover:underline text-safeLight" href={"$"}>
+                  <Link className="hover:underline text-safeAccent" href={"$"}>
                     {""} info@sanagos.com
                   </Link>
                 </p>

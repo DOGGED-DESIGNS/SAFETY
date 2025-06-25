@@ -1,9 +1,23 @@
 "use client";
-import React, { createContext, ReactNode, useContext, useReducer } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import { boolean } from "zod";
 
 type Service = {
   name: string;
   link: string;
+};
+
+// { time: Date; title: string; id: string; description: string; authorImage: string | null; advertImage: string | null; tags: string[]; }
+
+type titletype = {
+  imagekeys: string[];
 };
 
 const SERVICEINITIAL: Service[] = [
@@ -34,6 +48,25 @@ type Disttype = {
   payload: string;
 };
 
+// title dist
+
+type disttitle = {
+  type: "arrayupdate";
+  payload: string;
+};
+
+// reducer for title
+
+const titlereducer = (state: titletype, action: disttitle) => {
+  switch (action.type) {
+    case "arrayupdate":
+      return { ...state, imagekeys: [...state.imagekeys, action.payload] };
+
+    default:
+      return state;
+  }
+};
+
 const reducer = (state: Service[], action: Disttype) => {
   switch (action.type) {
     case "SET":
@@ -46,19 +79,68 @@ const reducer = (state: Service[], action: Disttype) => {
   }
 };
 
+// to create the wrapper you have to tell it what type of variable of function you will make global. also they set the  which will be overiden by the contextprovider.provide
+
+// dispatch is the messenger
+
+// reducer is the executro
 export const ContextProvider = createContext<{
   state: Service[];
+  progress: number;
   dispatch: React.Dispatch<Disttype>;
+  setLoad: React.Dispatch<React.SetStateAction<boolean>>;
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
+  load: boolean;
+  titleDispatch: React.Dispatch<disttitle>;
+  titleState: titletype;
 }>({
   state: SERVICEINITIAL,
+  titleDispatch: () => {},
+  titleState: {
+    imagekeys: [],
+  },
   dispatch: () => {},
+  setLoad: () => {},
+  setProgress: () => {},
+  load: false,
+  progress: 0,
 });
 
 export const ContextMain = ({ children }: { children: ReactNode }) => {
+  useEffect(() => {
+    const data = localStorage.getItem("title");
+    if (data) {
+      const finaldata = JSON.parse(data);
+      setTitle(finaldata);
+    }
+
+    // localStorage.clear();
+  }, []);
+  // now you are giving the reducer its power and equiping it with the initial state to carry out its task
+  const [title, setTitle] = useState<titletype>({
+    imagekeys: [],
+  });
+
   const [state, dispatch] = useReducer(reducer, SERVICEINITIAL);
 
+  const [titleState, titleDispatch] = useReducer(titlereducer, title);
+
+  const [load, setLoad] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
+
   return (
-    <ContextProvider.Provider value={{ state, dispatch }}>
+    <ContextProvider.Provider
+      value={{
+        titleState,
+        titleDispatch,
+        progress,
+        setProgress,
+        state,
+        load,
+        setLoad,
+        dispatch,
+      }}
+    >
       {children}
     </ContextProvider.Provider>
   );

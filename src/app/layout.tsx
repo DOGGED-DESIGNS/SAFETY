@@ -5,10 +5,26 @@ import { constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ContextMain } from "@/context/Context";
+import AuthProvider from "@/provider/AuthProvider";
+import { Toaster } from "@/components/ui/toaster";
+import Providers from "@/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = constructMetadata();
+// export const metadata = constructMetadata();
+
+export const metadata: Metadata = {
+  title: {
+    default: "Sanagos Safety",
+    template: "%s - Sanagos Safety ",
+  },
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_BASE_URL}`),
+  description:
+    "  At Sanagos Safety, we supply and service fire safety equipment,fire detection systems, and automatic fire suppression solutions—built to safeguard lives and property, 24/7.",
+  twitter: {
+    card: "summary_large_image",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -18,11 +34,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className=" bg-gray-100">
-        <ContextMain>
-          <Navbar />
-          {children}
-          <Footer />
-        </ContextMain>
+        <Providers>
+          <AuthProvider>
+            <ContextMain>
+              <Navbar />
+              {children}
+              <Toaster />
+              <Footer />
+            </ContextMain>
+          </AuthProvider>
+        </Providers>
       </body>
     </html>
   );

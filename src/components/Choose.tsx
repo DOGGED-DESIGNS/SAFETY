@@ -1,3 +1,4 @@
+"use client";
 import {
   Award,
   AwardIcon,
@@ -9,6 +10,7 @@ import {
 import React from "react";
 import Maxwrapper from "./Maxwrapper";
 import Image from "next/image";
+import { Badge, Shield } from "./svgs";
 
 export default function Choose() {
   return (
@@ -26,8 +28,8 @@ export default function Choose() {
               <div>
                 <div>
                   <div className=" items-center flex gap-2">
-                    <ShieldCheck className="shrink-0 h-7 w-7 font-bold fill text-safeAccent " />{" "}
-                    <p className="p  font-semibold ">Reliability</p>
+                    <Shield className=" fill-current shrink-0 h-7 w-7 font-bold fill text-safeAccent " />{" "}
+                    <p className="p  font-semibold ">Guaranteed</p>
                   </div>
                   <h2 className="  p ">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -36,24 +38,11 @@ export default function Choose() {
                   </h2>
                 </div>
               </div>
+
               <div>
                 <div>
                   <div className=" items-center flex gap-2">
-                    <BadgeCheck className="shrink-0 h-7 w-7 font-bold fill text-safeAccent " />{" "}
-                    <p className="p  font-semibold ">Reliability</p>
-                  </div>
-                  <h2 className="  p ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellendus explicabo consequuntur, nisi laboriosam maxime
-                    fugit architecto vero sit vel eos rerum alias esse
-                    distinctio neque minima! Architecto non dolorem ullam!
-                  </h2>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <div className=" items-center flex gap-2">
-                    <CircleCheck className="shrink-0 h-7 w-7 font-bold fill text-safeAccent " />{" "}
+                    <Badge className=" fill-current shrink-0 h-7 w-7 font-bold fill text-safeAccent " />{" "}
                     <p className="p  font-semibold ">Reliability</p>
                   </div>
                   <h2 className="  p ">

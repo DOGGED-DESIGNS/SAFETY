@@ -3,6 +3,9 @@ const require = createRequire(import.meta.url);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ["utfs.io"],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/, // look for .svg files

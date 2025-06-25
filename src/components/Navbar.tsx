@@ -2,18 +2,12 @@
 import React, { useState } from "react";
 import Maxwrapper from "./Maxwrapper";
 import { motion } from "framer";
-import { Use, Whatsapp } from "./svgs/index";
-import {
-  CircleUser,
-  GoalIcon,
-  MenuIcon,
-  MessageCircle,
-  Phone,
-  PhoneCall,
-} from "lucide-react";
+import { Google, Googlemain, Use, Whatsapp } from "./svgs/index";
+
 import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import Image from "next/image";
+import { Size } from "framer/render/types/Size.js";
 
 export default function Navbar() {
   // create a use state for toggle
@@ -21,8 +15,8 @@ export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   return (
     <>
-      <nav className="  fixed bg-safePri/85  backdrop-blur-lg z-[1000]  block md:hidden top-0 w-full  lg:hidden  ">
-        <Maxwrapper newClass=" relative p-0 sm:p-0 ">
+      <nav className="  sticky      z-[1000]  block md:hidden top-0 w-full  lg:hidden  ">
+        <Maxwrapper newClass=" bg-safeWhite relative p-0 sm:p-0 ">
           <div className=" flex items-center md:h-[60px] h-[50px]">
             <Link href={"/"} className=" bg-safeWhite rounded-r-full p-2">
               <span className=" block relative h-[30px] w-[100px] ">
@@ -37,7 +31,7 @@ export default function Navbar() {
 
             <div className=" pr-3 flex items-center gap-4 ml-auto">
               <Link href={"#"}>
-                <Use className=" fill-current text-safeDark h-7 w-7" />
+                <Use className=" fill-current text-safeAccent h-7 w-7" />
               </Link>
               <motion.a
                 onClick={() => {
@@ -120,17 +114,20 @@ export default function Navbar() {
           <motion.div
             initial={{
               x: "100%",
+              display: "none",
             }}
             animate={
               toggle
                 ? {
                     x: "0%",
+                    display: "block",
                   }
                 : {
                     x: "100%",
+                    display: "none",
                   }
             }
-            className=" z-[1000] bg-safePri h-lvh w-[75%] top-full right-0 absolute"
+            className=" z-[1000]  bg-safePri h-lvh w-[75%] top-full right-0 absolute"
           >
             <Maxwrapper newClass="">
               <div className="">
@@ -138,25 +135,42 @@ export default function Navbar() {
                   href={"#"}
                   className={buttonVariants({
                     className:
-                      " h-12 mt-10 w-full transition-all ease-in-out duration-300 group bg-transparent hover:bg-safeDark text-safeLight hover:text-safeWhite hover:border-safeDark border-2 border-safeLight  gap-2 ml-auto p font-bold mr-5 items-center block",
+                      " h-12 mt-10 w-full transition-all ease-in-out duration-300 group bg-transparent hover:bg-transparent text-zinc-900 hover:text-safeAccent hover:border-safeAccent border-2 border-zinc-900  gap-2 ml-auto p font-bold mr-5 items-center block",
                     size: "lg",
                   })}
                 >
-                  <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeWhite   font-extrabold text-safeLight" />{" "}
+                  <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeAccent   font-extrabold text-zinc-900" />{" "}
                   +234 907 617 6485
                   {/* <p className=" p font-bold text-safeDark">0976176485</p> */}
                 </Link>
-                <Button className=" text-safeWhite font-bold p hover:text-safeWhite bg-safeLight hover:bg-safeDark mt-5 h-12 w-full">
+                <Link
+                  href={"/login"}
+                  onClick={() => {
+                    setToggle(false);
+                  }}
+                  className={buttonVariants({
+                    size: "lg",
+                    className:
+                      " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
+                  })}
+                >
                   {" "}
-                  <GoalIcon /> SignUp with Google{" "}
-                </Button>
+                  Login
+                </Link>
                 <div className=" flex flex-col space-y-3 mt-4">
                   <Link
                     className=" inline-block mr-auto hover:text-safeLight capitalize h4 font-medium"
+                    href={"/"}
+                  >
+                    {" "}
+                    About
+                  </Link>
+                  <Link
+                    className=" hover:text-safeLight capitalize h4 font-medium"
                     href={"#"}
                   >
                     {" "}
-                    Home{" "}
+                    Services
                   </Link>
                   <Link
                     className=" hover:text-safeLight capitalize h4 font-medium"
@@ -167,10 +181,9 @@ export default function Navbar() {
                   </Link>
                   <Link
                     className="hover:text-safeLight h4 font-medium"
-                    href={"#"}
+                    href={"/blog"}
                   >
-                    {" "}
-                    Inquiries
+                    blog
                   </Link>
                 </div>
               </div>
@@ -181,8 +194,12 @@ export default function Navbar() {
         {/* this is the div that moves */}
       </nav>
 
-      <nav className=" sticky bg-safePri/85  backdrop-blur-lg z-[1000]  hidden md:block top-0 w-full  lg:block">
-        <div className=" flex items-center md:h-[70px] h-[50px]">
+      {/* backdrop-blur-lg */}
+
+      {/* bigscreen */}
+
+      <nav className=" sticky z-[1000]  hidden md:block top-0 w-full  lg:block">
+        <div className=" mx-auto max-w-screen-2xl bg-safeWhite  flex items-center md:h-[70px] h-[50px]">
           <Link
             href={"/"}
             className=" z-[1000] relative bg-safeWhite rounded-r-full p-2 "
@@ -197,26 +214,49 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <div className=" items-center ml-auto mr-6 flex gap-4">
+          <div className=" flex  justify-center flex-1    ">
+            <Link className="p mx-7  font-medium capitalize" href={"#"}>
+              About
+            </Link>
+            <Link className="p mx-7  font-medium capitalize" href={"#"}>
+              Services
+            </Link>
+            <Link className="p mx-7  font-medium capitalize" href={"#"}>
+              Contact
+            </Link>
+            <Link className="p mx-7  font-medium capitalize" href={"/blog"}>
+              blog
+            </Link>
+          </div>
+
+          <div className="    items-center ml-auto mr-6 flex gap-4">
+            <Link
+              href={"/login"}
+              className={buttonVariants({
+                size: "lg",
+                className:
+                  "  p font-bold bg-safeAccent hover:bg-safeAccent/80 ",
+              })}
+              // className=" p font-bold bg-safeAccent hover:bg-safeAccent/80 "
+            >
+              Login
+            </Link>
             <div>
               <Link
                 href={"#"}
                 className={buttonVariants({
                   className:
-                    " h-12 transition-all ease-in-out duration-300 group bg-transparent hover:bg-safeDark text-safeLight hover:text-safeWhite hover:border-safeDark border-2 border-safeLight  gap-2 ml-auto p font-bold mr-5 items-center block",
+                    "  transition-all ease-in-out duration-300 group bg-transparent  text-zinc-900 hover:bg-transparent hover:border-safeAccent hover:text-safeAccent  border-2 border-zinc-900  gap-2 ml-auto p font-bold  items-center block",
                   size: "lg",
                 })}
               >
-                <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeWhite   font-extrabold text-safeLight" />{" "}
+                <Whatsapp className="  group-hover:text-safeAccent duration-300 fill-current   transition-all ease-in-out    font-extrabold text-zinc-900" />{" "}
                 +234 907 617 6485
                 {/* <p className=" p font-bold text-safeDark">0976176485</p> */}
               </Link>
             </div>
 
-            <Button className=" p font-bold bg-safeLight hover:bg-safeDark h-12">
-              SignUp with Google
-            </Button>
-            <Use className=" fill-current text-safeLight  h-[48px] w-[48px]" />
+            <Use className=" fill-current text-safeAccent  h-[38px] w-[38px]" />
           </div>
         </div>
       </nav>

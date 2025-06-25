@@ -76,7 +76,7 @@ export default function Hero() {
                 )}
               </div>
               <div className="h-14">
-                <Button className=" w-full h-full my-3 font-outfit font-bold text-white   bg-safeLightest  hover:bg-safeLight  ">
+                <Button className=" w-full h-full my-3 font-outfit font-bold text-white   bg-safeAccent  hover:bg-safeAccent/80  ">
                   {" "}
                   Search{" "}
                 </Button>

@@ -95,7 +95,7 @@
   }
 
   .h2 {
-    @apply capitalize font-outfit leading-9 font-bold my-2  tracking-wide  md:text-2xl text-xl;
+    @apply capitalize font-outfit leading-9 font-bold my-2  tracking-wide  md:text-3xl text-xl;
   }
   .h3 {
     @apply capitalize font-outfit leading-9 font-bold my-2  tracking-wide  md:text-2xl text-lg;
@@ -109,5 +109,39 @@
 
   .but {
     @apply text-base font-semibold font-outfit tracking-wider;
+  }
+
+  .genclass p,
+  ul,
+  ol {
+    @apply font-outfit   leading-6  tracking-wide    md:text-base text-base;
+  }
+
+  .genclass img {
+    @apply w-full   max-h-[576px] m-auto;
+  }
+
+  .genclass h1 {
+    @apply capitalize font-outfit  font-bold leading-6 my-2  tracking-wide lg:text-6xl md:text-4xl text-2xl;
+  }
+
+  .genclass h2 {
+    @apply capitalize font-outfit  leading-9 font-bold my-2  tracking-wide  md:text-3xl text-xl;
+  }
+
+  .genclass h3 {
+    @apply capitalize font-outfit  leading-9 font-bold my-2  tracking-wide  md:text-2xl text-lg;
+  }
+
+  .genclass h4 {
+    @apply capitalize font-outfit  leading-9 font-bold my-2  tracking-wide  md:text-xl text-base;
+  }
+
+  .genclass li {
+    @apply list-decimal  list-inside;
+  }
+
+  .genclass ol {
+    @apply list-disc  list-inside;
   }
 }
