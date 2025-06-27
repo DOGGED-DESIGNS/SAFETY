@@ -19,7 +19,7 @@ export default function Aproach() {
                 alt="image"
                 src="/first.png"
               />
-              <div className=" absolute top-0 left-0 z-40 bg-safeAccent h-10 w-10 flex justify-center items-center ">
+              <div className=" absolute top-0 left-0 z-10 bg-safeAccent h-10 w-10 flex justify-center items-center ">
                 <p className="h4 m-0 text-safeWhite ">1</p>
               </div>
             </div>
@@ -42,7 +42,7 @@ export default function Aproach() {
                 alt="image"
                 src="/second.png"
               />
-              <div className=" absolute top-0 left-0 z-40 bg-safeAccent h-10 w-10 flex justify-center items-center ">
+              <div className=" absolute top-0 left-0 z-20 bg-safeAccent h-10 w-10 flex justify-center items-center ">
                 <p className="h4 m-0 text-safeWhite ">2</p>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function Aproach() {
                 alt="image"
                 src="/third.png"
               />
-              <div className=" absolute top-0 left-0 z-40 bg-safeAccent h-10 w-10 flex justify-center items-center ">
+              <div className=" absolute top-0 left-0 z-20 bg-safeAccent h-10 w-10 flex justify-center items-center ">
                 <p className="h4 m-0 text-safeWhite ">3</p>
               </div>
             </div>

@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import Image from "next/image";
 import { Size } from "framer/render/types/Size.js";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   // create a use state for toggle
@@ -15,8 +16,8 @@ export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   return (
     <>
-      <nav className=" overflow-hidden border fixed  z-[1000]  block md:hidden top-0 w-full  lg:hidden  ">
-        <Maxwrapper newClass="    relative p-0 sm:p-0 ">
+      <nav className=" sticky z-30    overflow-hidden      block md:hidden top-0 w-full  lg:hidden  ">
+        <Maxwrapper newClass="   p-0 sm:p-0 ">
           <div className="  bg-safeWhite flex items-center md:h-[60px] h-[50px]">
             <Link href={"/"} className=" bg-safeWhite rounded-r-full p-2">
               <span className=" block relative h-[30px] w-[100px] ">
@@ -110,84 +111,91 @@ export default function Navbar() {
             </div>
           </div>
 
-          <motion.div
-            initial={{
-              x: "100%",
-            }}
-            animate={
-              toggle
-                ? {
-                    x: "0%",
-                  }
-                : {
-                    x: "100%",
-                  }
-            }
-            className=" z-[1000]  bg-safePri h-lvh w-full "
+          <div
+            onClick={() => setToggle(false)}
+            className={cn(" bg-transparent hidden ", {
+              " bg-slate-600/20 block backdrop-blur-lg ": toggle,
+            })}
           >
-            <Maxwrapper newClass="">
-              <div className="">
-                <Link
-                  href={"#"}
-                  className={buttonVariants({
-                    className:
-                      " h-12 mt-10 w-full transition-all ease-in-out duration-300 group bg-transparent hover:bg-transparent text-zinc-900 hover:text-safeAccent hover:border-safeAccent border-2 border-zinc-900  gap-2 ml-auto p font-bold mr-5 items-center block",
-                    size: "lg",
-                  })}
-                >
-                  <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeAccent   font-extrabold text-zinc-900" />{" "}
-                  +234 907 617 6485
-                </Link>
-                <Link
-                  href={"/login"}
-                  onClick={() => {
-                    setToggle(false);
-                  }}
-                  className={buttonVariants({
-                    size: "lg",
-                    className:
-                      " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
-                  })}
-                >
-                  {" "}
-                  Login
-                </Link>
-                <div className=" flex flex-col space-y-3 mt-4">
+            <motion.div
+              initial={{
+                x: "-100%",
+              }}
+              animate={
+                toggle
+                  ? {
+                      x: "0%",
+                    }
+                  : {
+                      x: "-100%",
+                    }
+              }
+              className="    bg-safePri h-lvh w-[75%] "
+            >
+              <Maxwrapper newClass="">
+                <div className="">
                   <Link
-                    className=" inline-block mr-auto hover:text-safeAccent capitalize h4 font-medium"
-                    href={"/"}
-                    onClick={() => setToggle(false)}
-                  >
-                    {" "}
-                    About
-                  </Link>
-                  <Link
-                    className=" hover:text-safeAccent capitalize h4 font-medium"
                     href={"#"}
-                    onClick={() => setToggle(false)}
+                    className={buttonVariants({
+                      className:
+                        " h-12 mt-10 w-full transition-all ease-in-out duration-300 group bg-transparent hover:bg-transparent text-zinc-900 hover:text-safeAccent hover:border-safeAccent border-2 border-zinc-900  gap-2 ml-auto p font-bold mr-5 items-center block",
+                      size: "lg",
+                    })}
                   >
-                    {" "}
-                    Services
+                    <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeAccent   font-extrabold text-zinc-900" />{" "}
+                    +234 907 617 6485
                   </Link>
                   <Link
-                    className=" hover:text-safeAccent capitalize h4 font-medium"
-                    href={"#"}
-                    onClick={() => setToggle(false)}
+                    href={"/login"}
+                    onClick={() => {
+                      setToggle(false);
+                    }}
+                    className={buttonVariants({
+                      size: "lg",
+                      className:
+                        " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
+                    })}
                   >
                     {" "}
-                    Contact
+                    Login
                   </Link>
-                  <Link
-                    className="hover:text-safeAccent h4 font-medium"
-                    href={"/blog"}
-                    onClick={() => setToggle(false)}
-                  >
-                    blog
-                  </Link>
+                  <div className=" flex flex-col space-y-3 mt-4">
+                    <Link
+                      className=" inline-block mr-auto hover:text-safeAccent capitalize h4 font-medium"
+                      href={"/"}
+                      onClick={() => setToggle(false)}
+                    >
+                      {" "}
+                      About
+                    </Link>
+                    <Link
+                      className=" hover:text-safeAccent mr-auto capitalize h4 font-medium"
+                      href={"#"}
+                      onClick={() => setToggle(false)}
+                    >
+                      {" "}
+                      Services
+                    </Link>
+                    <Link
+                      className=" mr-auto hover:text-safeAccent capitalize h4 font-medium"
+                      href={"#"}
+                      onClick={() => setToggle(false)}
+                    >
+                      {" "}
+                      Contact
+                    </Link>
+                    <Link
+                      className="mr-autohover:text-safeAccent h4 font-medium"
+                      href={"/blog"}
+                      onClick={() => setToggle(false)}
+                    >
+                      blog
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </Maxwrapper>
-          </motion.div>
+              </Maxwrapper>
+            </motion.div>
+          </div>
         </Maxwrapper>
       </nav>
 
@@ -195,11 +203,11 @@ export default function Navbar() {
 
       {/* bigscreen */}
 
-      <nav className=" sticky z-[1000]  hidden md:block top-0 w-full  lg:block">
+      <nav className=" sticky z-30   hidden md:block top-0 w-full  lg:block">
         <div className=" mx-auto max-w-screen-2xl bg-safeWhite  flex items-center md:h-[70px] h-[50px]">
           <Link
             href={"/"}
-            className=" z-[1000] relative bg-safeWhite rounded-r-full p-2 "
+            className="  relative bg-safeWhite rounded-r-full p-2 "
           >
             <span className=" block relative h-[50px] w-[200px] ">
               <Image

@@ -80,7 +80,7 @@ export default async function page() {
 
   return (
     <>
-      <Maxwrapper newClass="mt-[100px]   ">
+      <Maxwrapper newClass="mt-10">
         <div className=" auto-rows-[minmax(300px,_auto)] lg:auto-rows-[minmax(600px,_auto)]  gap-10  grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 ">
           <Link
             href={`/blog/${first.id}`}
@@ -92,7 +92,7 @@ export default async function page() {
               fill
               className=" w-full h-full absolute object-cover "
             />
-            <div className=" flex flex-col  absolute p-4 inset-0 z-30 ">
+            <div className=" flex flex-col  absolute p-4 inset-0 z-10 ">
               <div className="   mt-auto">
                 <p className="uppercase p text-gray-300">
                   {" "}
@@ -105,9 +105,10 @@ export default async function page() {
             </div>
           </Link>
 
-          {all.map((items) => (
+          {all.map((items, index) => (
             <>
               <Link
+                key={index}
                 href={`/blog/${items.id}`}
                 className=" flex flex-col border hover:bg-gray-200 transition-all   duration-1000 ease-in-out  bg-safeWhite  md:col-span-1"
               >
