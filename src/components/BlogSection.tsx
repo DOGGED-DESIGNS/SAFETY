@@ -25,7 +25,7 @@ export default async function BlogSection() {
   const result = await getblogs();
   return (
     <>
-      <Maxwrapper newClass=" py-[100px]">
+      <Maxwrapper newClass=" py-[200px]">
         <div className=" grid grid-cols-1 md:grid-cols-2 gap-20 lg:grid-cols-3">
           {result.map((reve) => (
             <>

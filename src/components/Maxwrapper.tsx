@@ -11,7 +11,7 @@ export default function Maxwrapper({
   return (
     <div
       className={cn(
-        " lg:px-10 md:px-8 sm:px-4 px-4 max-w-screen-2xl  m-auto  ",
+        "  md:px-4 sm:px-2 px-2 max-w-screen-2xl  m-auto  ",
         newClass
       )}
     >

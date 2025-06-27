@@ -1,13 +1,12 @@
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import Providers from "@/components/Provider";
+import { Toaster } from "@/components/ui/toaster";
+import { ContextMain } from "@/context/Context";
+import AuthProvider from "@/provider/AuthProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { constructMetadata } from "@/lib/utils";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { ContextMain } from "@/context/Context";
-import AuthProvider from "@/provider/AuthProvider";
-import { Toaster } from "@/components/ui/toaster";
-import Providers from "@/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,6 +37,7 @@ export default function RootLayout({
           <AuthProvider>
             <ContextMain>
               <Navbar />
+
               {children}
               <Toaster />
               <Footer />

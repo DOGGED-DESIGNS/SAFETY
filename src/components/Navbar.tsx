@@ -15,9 +15,9 @@ export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   return (
     <>
-      <nav className="  sticky      z-[1000]  block md:hidden top-0 w-full  lg:hidden  ">
-        <Maxwrapper newClass=" bg-safeWhite relative p-0 sm:p-0 ">
-          <div className=" flex items-center md:h-[60px] h-[50px]">
+      <nav className=" overflow-hidden border fixed  z-[1000]  block md:hidden top-0 w-full  lg:hidden  ">
+        <Maxwrapper newClass="    relative p-0 sm:p-0 ">
+          <div className="  bg-safeWhite flex items-center md:h-[60px] h-[50px]">
             <Link href={"/"} className=" bg-safeWhite rounded-r-full p-2">
               <span className=" block relative h-[30px] w-[100px] ">
                 <Image
@@ -110,24 +110,20 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* welcome to the max-width wrapper */}
           <motion.div
             initial={{
               x: "100%",
-              display: "none",
             }}
             animate={
               toggle
                 ? {
                     x: "0%",
-                    display: "block",
                   }
                 : {
                     x: "100%",
-                    display: "none",
                   }
             }
-            className=" z-[1000]  bg-safePri h-lvh w-[75%] top-full right-0 absolute"
+            className=" z-[1000]  bg-safePri h-lvh w-full "
           >
             <Maxwrapper newClass="">
               <div className="">
@@ -141,7 +137,6 @@ export default function Navbar() {
                 >
                   <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeAccent   font-extrabold text-zinc-900" />{" "}
                   +234 907 617 6485
-                  {/* <p className=" p font-bold text-safeDark">0976176485</p> */}
                 </Link>
                 <Link
                   href={"/login"}
@@ -159,29 +154,33 @@ export default function Navbar() {
                 </Link>
                 <div className=" flex flex-col space-y-3 mt-4">
                   <Link
-                    className=" inline-block mr-auto hover:text-safeLight capitalize h4 font-medium"
+                    className=" inline-block mr-auto hover:text-safeAccent capitalize h4 font-medium"
                     href={"/"}
+                    onClick={() => setToggle(false)}
                   >
                     {" "}
                     About
                   </Link>
                   <Link
-                    className=" hover:text-safeLight capitalize h4 font-medium"
+                    className=" hover:text-safeAccent capitalize h4 font-medium"
                     href={"#"}
+                    onClick={() => setToggle(false)}
                   >
                     {" "}
                     Services
                   </Link>
                   <Link
-                    className=" hover:text-safeLight capitalize h4 font-medium"
+                    className=" hover:text-safeAccent capitalize h4 font-medium"
                     href={"#"}
+                    onClick={() => setToggle(false)}
                   >
                     {" "}
                     Contact
                   </Link>
                   <Link
-                    className="hover:text-safeLight h4 font-medium"
+                    className="hover:text-safeAccent h4 font-medium"
                     href={"/blog"}
+                    onClick={() => setToggle(false)}
                   >
                     blog
                   </Link>
@@ -190,8 +189,6 @@ export default function Navbar() {
             </Maxwrapper>
           </motion.div>
         </Maxwrapper>
-
-        {/* this is the div that moves */}
       </nav>
 
       {/* backdrop-blur-lg */}

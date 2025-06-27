@@ -80,7 +80,7 @@ export default async function page() {
 
   return (
     <>
-      <Maxwrapper newClass="mt-10">
+      <Maxwrapper newClass="mt-[100px]   ">
         <div className=" auto-rows-[minmax(300px,_auto)] lg:auto-rows-[minmax(600px,_auto)]  gap-10  grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 ">
           <Link
             href={`/blog/${first.id}`}

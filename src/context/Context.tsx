@@ -85,6 +85,8 @@ const reducer = (state: Service[], action: Disttype) => {
 
 // reducer is the executro
 export const ContextProvider = createContext<{
+  toggle: boolean;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   state: Service[];
   progress: number;
   dispatch: React.Dispatch<Disttype>;
@@ -94,6 +96,8 @@ export const ContextProvider = createContext<{
   titleDispatch: React.Dispatch<disttitle>;
   titleState: titletype;
 }>({
+  setToggle: () => {},
+  toggle: false,
   state: SERVICEINITIAL,
   titleDispatch: () => {},
   titleState: {
@@ -121,6 +125,8 @@ export const ContextMain = ({ children }: { children: ReactNode }) => {
     imagekeys: [],
   });
 
+  const [toggle, setToggle] = useState<boolean>(false);
+
   const [state, dispatch] = useReducer(reducer, SERVICEINITIAL);
 
   const [titleState, titleDispatch] = useReducer(titlereducer, title);
@@ -132,6 +138,8 @@ export const ContextMain = ({ children }: { children: ReactNode }) => {
     <ContextProvider.Provider
       value={{
         titleState,
+        toggle,
+        setToggle,
         titleDispatch,
         progress,
         setProgress,
