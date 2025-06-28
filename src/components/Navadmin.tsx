@@ -3,20 +3,16 @@ import React, { useState } from "react";
 import Maxwrapper from "./Maxwrapper";
 import { motion } from "framer";
 import { Google, Googlemain, Use, Whatsapp } from "./svgs/index";
-import { useSession, signOut, signIn } from "next-auth/react";
+
 import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import Image from "next/image";
 import { Size } from "framer/render/types/Size.js";
 import { cn } from "@/lib/utils";
 
-export default function Navbar() {
+export default function Navadmin() {
   // create a use state for toggle
-  // this is the session tags
 
-  const { data: session, status } = useSession();
-
-  // this is the thing
   const [toggle, setToggle] = useState(false);
   return (
     <>
@@ -36,18 +32,7 @@ export default function Navbar() {
 
             <div className=" pr-3 flex items-center gap-4 ml-auto">
               <Link href={"#"}>
-                {session?.user?.image ? (
-                  <div className=" relative rounded-full overflow-hidden h-7 w-7">
-                    <Image
-                      src={session.user.image ?? ""}
-                      fill
-                      className=" h-full w-full object-cover"
-                      alt="img"
-                    />
-                  </div>
-                ) : (
-                  <Use className=" fill-current text-safeAccent h-7 w-7" />
-                )}
+                <Use className=" fill-current text-safeAccent h-7 w-7" />
               </Link>
               <motion.a
                 onClick={() => {
@@ -160,38 +145,20 @@ export default function Navbar() {
                     <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeAccent   font-extrabold text-zinc-900" />{" "}
                     +234 907 617 6485
                   </Link>
-
-                  {session?.user?.email ? (
-                    <Link
-                      href={"/login"}
-                      onClick={() => {
-                        signOut({ callbackUrl: "/" });
-                        setToggle(false);
-                      }}
-                      className={buttonVariants({
-                        size: "lg",
-                        className:
-                          " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
-                      })}
-                    >
-                      Logout
-                    </Link>
-                  ) : (
-                    <Link
-                      href={"/login"}
-                      onClick={() => {
-                        setToggle(false);
-                      }}
-                      className={buttonVariants({
-                        size: "lg",
-                        className:
-                          " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
-                      })}
-                    >
-                      LogIn
-                    </Link>
-                  )}
-
+                  <Link
+                    href={"/login"}
+                    onClick={() => {
+                      setToggle(false);
+                    }}
+                    className={buttonVariants({
+                      size: "lg",
+                      className:
+                        " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
+                    })}
+                  >
+                    {" "}
+                    Login
+                  </Link>
                   <div className=" flex flex-col space-y-3 mt-4">
                     <Link
                       className=" inline-block mr-auto hover:text-safeAccent capitalize h4 font-medium"
@@ -268,40 +235,17 @@ export default function Navbar() {
           </div>
 
           <div className="    items-center ml-auto mr-6 flex gap-4">
-            {status === "loading" ? null : session?.user?.email ===
-              "uzoechijerry@gmail.com" ? (
-              <Link
-                href="/admin"
-                className={buttonVariants({
-                  size: "lg",
-                  className: "p font-bold bg-safeAccent hover:bg-safeAccent/80",
-                })}
-              >
-                Admin
-              </Link>
-            ) : session?.user?.email ? (
-              <Link
-                href="/login"
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className={buttonVariants({
-                  size: "lg",
-                  className: "p font-bold bg-safeAccent hover:bg-safeAccent/80",
-                })}
-              >
-                LougOut
-              </Link>
-            ) : (
-              <Link
-                href="/login"
-                className={buttonVariants({
-                  size: "lg",
-                  className: "p font-bold bg-safeAccent hover:bg-safeAccent/80",
-                })}
-              >
-                Login
-              </Link>
-            )}
-
+            <Link
+              href={"/login"}
+              className={buttonVariants({
+                size: "lg",
+                className:
+                  "  p font-bold bg-safeAccent hover:bg-safeAccent/80 ",
+              })}
+              // className=" p font-bold bg-safeAccent hover:bg-safeAccent/80 "
+            >
+              Login
+            </Link>
             <div>
               <Link
                 href={"#"}
@@ -317,20 +261,7 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <Link href={"#"}>
-              {session?.user?.image ? (
-                <div className=" relative rounded-full overflow-hidden h-[38px] w-[38px]">
-                  <Image
-                    src={session.user.image ?? ""}
-                    fill
-                    className=" h-full w-full object-cover"
-                    alt="img"
-                  />
-                </div>
-              ) : (
-                <Use className=" fill-current text-safeAccent  h-[38px] w-[38px]" />
-              )}
-            </Link>
+            <Use className=" fill-current text-safeAccent  h-[38px] w-[38px]" />
           </div>
         </div>
       </nav>

@@ -4,7 +4,7 @@ const require = createRequire(import.meta.url);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["utfs.io"],
+    domains: ["utfs.io", "lh3.googleusercontent.com"],
   },
   webpack(config) {
     config.module.rules.push({

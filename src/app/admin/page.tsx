@@ -3,6 +3,11 @@ import Maxwrapper from "@/components/Maxwrapper";
 import { Firesafety } from "@/components/svgs";
 import Link from "next/link";
 import React from "react";
+import { Metadata } from "next";
+
+// export const metadata: Metadata = {
+//   title: "Admin",
+// };
 
 export default function page() {
   return (
