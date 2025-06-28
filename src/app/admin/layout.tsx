@@ -1,4 +1,5 @@
 import Maxwrapper from "@/components/Maxwrapper";
+import Navadmin from "@/components/Navadmin";
 import { Metadata } from "next";
 import React from "react";
 
@@ -16,5 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function layout({ children }: { children: React.ReactNode }) {
-  return <Maxwrapper>{children}</Maxwrapper>;
+  return (
+    <Maxwrapper>
+      <Navadmin />
+      {children}
+    </Maxwrapper>
+  );
 }

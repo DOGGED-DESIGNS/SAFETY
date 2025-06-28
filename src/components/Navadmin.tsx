@@ -3,16 +3,20 @@ import React, { useState } from "react";
 import Maxwrapper from "./Maxwrapper";
 import { motion } from "framer";
 import { Google, Googlemain, Use, Whatsapp } from "./svgs/index";
-
+import { useSession, signOut, signIn } from "next-auth/react";
 import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import Image from "next/image";
 import { Size } from "framer/render/types/Size.js";
 import { cn } from "@/lib/utils";
 
-export default function Navadmin() {
+export default function Navbadmin() {
   // create a use state for toggle
+  // this is the session tags
 
+  const { data: session, status } = useSession();
+
+  // this is the thing
   const [toggle, setToggle] = useState(false);
   return (
     <>
@@ -32,7 +36,18 @@ export default function Navadmin() {
 
             <div className=" pr-3 flex items-center gap-4 ml-auto">
               <Link href={"#"}>
-                <Use className=" fill-current text-safeAccent h-7 w-7" />
+                {session?.user?.image ? (
+                  <div className=" relative rounded-full overflow-hidden h-7 w-7">
+                    <Image
+                      src={session.user.image ?? ""}
+                      fill
+                      className=" h-full w-full object-cover"
+                      alt="img"
+                    />
+                  </div>
+                ) : (
+                  <Use className=" fill-current text-safeAccent h-7 w-7" />
+                )}
               </Link>
               <motion.a
                 onClick={() => {
@@ -134,62 +149,52 @@ export default function Navadmin() {
             >
               <Maxwrapper newClass="">
                 <div className="">
-                  <Link
-                    href={"#"}
-                    className={buttonVariants({
-                      className:
-                        " h-12 mt-10 w-full transition-all ease-in-out duration-300 group bg-transparent hover:bg-transparent text-zinc-900 hover:text-safeAccent hover:border-safeAccent border-2 border-zinc-900  gap-2 ml-auto p font-bold mr-5 items-center block",
-                      size: "lg",
-                    })}
-                  >
-                    <Whatsapp className=" duration-300 fill-current   transition-all ease-in-out group-hover:text-safeAccent   font-extrabold text-zinc-900" />{" "}
-                    +234 907 617 6485
-                  </Link>
-                  <Link
-                    href={"/login"}
-                    onClick={() => {
-                      setToggle(false);
-                    }}
-                    className={buttonVariants({
-                      size: "lg",
-                      className:
-                        " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
-                    })}
-                  >
-                    {" "}
-                    Login
-                  </Link>
+                  {session?.user?.email ? (
+                    <Link
+                      href={"/login"}
+                      onClick={() => {
+                        signOut({ callbackUrl: "/" });
+                        setToggle(false);
+                      }}
+                      className={buttonVariants({
+                        size: "lg",
+                        className:
+                          " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
+                      })}
+                    >
+                      Logout
+                    </Link>
+                  ) : (
+                    <Link
+                      href={"/login"}
+                      onClick={() => {
+                        setToggle(false);
+                      }}
+                      className={buttonVariants({
+                        size: "lg",
+                        className:
+                          " text-safeWhite font-bold p hover:text-safeWhite bg-safeAccent hover:bg-safeAccent/80 mt-5 h-12 w-full",
+                      })}
+                    >
+                      LogIn
+                    </Link>
+                  )}
+
                   <div className=" flex flex-col space-y-3 mt-4">
                     <Link
                       className=" inline-block mr-auto hover:text-safeAccent capitalize h4 font-medium"
-                      href={"/"}
+                      href={"/admin/makepost"}
                       onClick={() => setToggle(false)}
                     >
                       {" "}
-                      About
+                      Makeposts
                     </Link>
                     <Link
                       className=" hover:text-safeAccent mr-auto capitalize h4 font-medium"
-                      href={"#"}
+                      href={"admin/seepost"}
                       onClick={() => setToggle(false)}
                     >
-                      {" "}
-                      Services
-                    </Link>
-                    <Link
-                      className=" mr-auto hover:text-safeAccent capitalize h4 font-medium"
-                      href={"#"}
-                      onClick={() => setToggle(false)}
-                    >
-                      {" "}
-                      Contact
-                    </Link>
-                    <Link
-                      className="mr-autohover:text-safeAccent h4 font-medium"
-                      href={"/blog"}
-                      onClick={() => setToggle(false)}
-                    >
-                      blog
+                      Seeposts
                     </Link>
                   </div>
                 </div>
@@ -220,11 +225,17 @@ export default function Navadmin() {
           </Link>
 
           <div className=" flex  justify-center flex-1    ">
-            <Link className="p mx-7  font-medium capitalize" href={"#"}>
-              About
+            <Link
+              className="p mx-7  font-medium capitalize"
+              href={"/admin/seepost"}
+            >
+              Seeposts
             </Link>
-            <Link className="p mx-7  font-medium capitalize" href={"#"}>
-              Services
+            <Link
+              className="p mx-7  font-medium capitalize"
+              href={"/admin/makepost"}
+            >
+              Makeposts
             </Link>
             <Link className="p mx-7  font-medium capitalize" href={"#"}>
               Contact
@@ -235,33 +246,54 @@ export default function Navadmin() {
           </div>
 
           <div className="    items-center ml-auto mr-6 flex gap-4">
-            <Link
-              href={"/login"}
-              className={buttonVariants({
-                size: "lg",
-                className:
-                  "  p font-bold bg-safeAccent hover:bg-safeAccent/80 ",
-              })}
-              // className=" p font-bold bg-safeAccent hover:bg-safeAccent/80 "
-            >
-              Login
-            </Link>
-            <div>
+            {status === "loading" ? null : session?.user?.email ===
+              "uzoechijerry@gmail.com" ? (
               <Link
-                href={"#"}
+                href="/admin"
                 className={buttonVariants({
-                  className:
-                    "  transition-all ease-in-out duration-300 group bg-transparent  text-zinc-900 hover:bg-transparent hover:border-safeAccent hover:text-safeAccent  border-2 border-zinc-900  gap-2 ml-auto p font-bold  items-center block",
                   size: "lg",
+                  className: "p font-bold bg-safeAccent hover:bg-safeAccent/80",
                 })}
               >
-                <Whatsapp className="  group-hover:text-safeAccent duration-300 fill-current   transition-all ease-in-out    font-extrabold text-zinc-900" />{" "}
-                +234 907 617 6485
-                {/* <p className=" p font-bold text-safeDark">0976176485</p> */}
+                Admin
               </Link>
-            </div>
+            ) : session?.user?.email ? (
+              <Link
+                href="/login"
+                onClick={() => signOut({ callbackUrl: "/" })}
+                className={buttonVariants({
+                  size: "lg",
+                  className: "p font-bold bg-safeAccent hover:bg-safeAccent/80",
+                })}
+              >
+                LougOut
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className={buttonVariants({
+                  size: "lg",
+                  className: "p font-bold bg-safeAccent hover:bg-safeAccent/80",
+                })}
+              >
+                Login
+              </Link>
+            )}
 
-            <Use className=" fill-current text-safeAccent  h-[38px] w-[38px]" />
+            <Link href={"#"}>
+              {session?.user?.image ? (
+                <div className=" relative rounded-full overflow-hidden h-[38px] w-[38px]">
+                  <Image
+                    src={session.user.image ?? ""}
+                    fill
+                    className=" h-full w-full object-cover"
+                    alt="img"
+                  />
+                </div>
+              ) : (
+                <Use className=" fill-current text-safeAccent  h-[38px] w-[38px]" />
+              )}
+            </Link>
           </div>
         </div>
       </nav>
