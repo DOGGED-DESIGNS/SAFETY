@@ -1,6 +1,8 @@
 "use server";
 import { db } from "@/db/connect";
 
+import { UTApi } from "uploadthing/server";
+
 // this is the upload blog type
 
 interface finaluploadblogtype {
@@ -49,8 +51,6 @@ export const storageTitle = async (bb: bb) => {
         tags: bb.tags,
       },
     });
-
-    
 
     const blogpostdate = await db.blogpost.create({
       data: {
@@ -134,3 +134,66 @@ export const updateBlogPostAdvertImages = async (
     throw new Error();
   }
 };
+
+// delete post
+// this involves deleting the post firest then the images
+//step get the post you want to delte
+// stip 2 delete all images related to that post
+// step 3 delete the title which then drops the entire post
+
+export async function deletePost(id: string) {
+  try {
+    const data = await db.blog.findFirst({
+      where: {
+        id: id,
+      },
+      include: {
+        blogpost: true,
+      },
+    });
+
+    const utpi = new UTApi();
+
+    for (const key of data?.blogpost ?? []) {
+      for (const keys of key.imagekeys) {
+        await utpi.deleteFiles(keys);
+      }
+    }
+
+    const deletefile = db.blog.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    return deletefile;
+  } catch (error) {
+    throw new Error(`error :${error}`);
+  }
+}
+
+// update posts
+
+//step one get the post related to the id and return it
+// DO NOT DELETE ANY IMAGE
+
+export async function updatePost(info: { id: string }) {
+  try {
+    const data = await db.blogpost.findFirst({
+      where: {
+        id: info.id,
+      },
+      include: {
+        blog: true,
+      },
+    });
+
+    if (!data) {
+      throw new Error("NO DATA FOUND");
+    }
+
+    return data;
+  } catch (error) {
+    throw new Error(`Error:${error}`);
+  }
+}

@@ -23,6 +23,11 @@ const getblogs = cache(async () => {
 
 export default async function BlogSection() {
   const result = await getblogs();
+
+  if (result.length === 0) {
+    return <h2 className="h3 text-safeAccent"> No Blog Found </h2>;
+  }
+
   return (
     <>
       <Maxwrapper newClass=" py-[200px]">

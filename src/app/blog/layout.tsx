@@ -1,4 +1,6 @@
+import Footer from "@/components/Footer";
 import Maxwrapper from "@/components/Maxwrapper";
+import Navbar from "@/components/Navbar";
 import { Metadata } from "next";
 import React from "react";
 
@@ -16,5 +18,12 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <Maxwrapper>{children}</Maxwrapper>;
+  return (
+    <Maxwrapper>
+      <Navbar />
+      {children}
+
+      <Footer />
+    </Maxwrapper>
+  );
 }

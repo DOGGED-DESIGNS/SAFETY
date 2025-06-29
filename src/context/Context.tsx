@@ -1,4 +1,5 @@
 "use client";
+import { Blog } from "@prisma/client";
 import React, {
   createContext,
   ReactNode,
@@ -79,12 +80,43 @@ const reducer = (state: Service[], action: Disttype) => {
   }
 };
 
+// this is a reducer to fine the title of blog post
+//step1 create tye types for your iniitial states:[] and your action:{payload}
+//step2 use switch and case to give conditional returs based on you action:{payload}
+
+type titleAction =
+  | {
+      instruct: "FIND";
+      payload: string;
+    }
+  | {
+      instruct: "SET";
+      payload2: Blog[];
+    };
+
+const reduceblogpost = (state: Blog[], action: titleAction) => {
+  switch (action.instruct) {
+    case "FIND":
+      return state.filter((title) =>
+        title.title.toLowerCase().includes(action.payload)
+      );
+
+    case "SET":
+      return action.payload2;
+
+    default:
+      return state;
+  }
+};
+
 // to create the wrapper you have to tell it what type of variable of function you will make global. also they set the  which will be overiden by the contextprovider.provide
 
 // dispatch is the messenger
 
 // reducer is the executro
 export const ContextProvider = createContext<{
+  titlesort: Blog[];
+  titlesortDispatch: React.Dispatch<titleAction>;
   toggle: boolean;
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   state: Service[];
@@ -96,6 +128,8 @@ export const ContextProvider = createContext<{
   titleDispatch: React.Dispatch<disttitle>;
   titleState: titletype;
 }>({
+  titlesort: [],
+  titlesortDispatch: () => {},
   setToggle: () => {},
   toggle: false,
   state: SERVICEINITIAL,
@@ -111,21 +145,19 @@ export const ContextProvider = createContext<{
 });
 
 export const ContextMain = ({ children }: { children: ReactNode }) => {
-  useEffect(() => {
-    const data = localStorage.getItem("title");
-    if (data) {
-      const finaldata = JSON.parse(data);
-      setTitle(finaldata);
-    }
-
-    // localStorage.clear();
-  }, []);
   // now you are giving the reducer its power and equiping it with the initial state to carry out its task
   const [title, setTitle] = useState<titletype>({
     imagekeys: [],
   });
 
   const [toggle, setToggle] = useState<boolean>(false);
+
+  const initialsort: Blog[] = [];
+
+  const [titlesort, titlesortDispatch] = useReducer(
+    reduceblogpost,
+    initialsort
+  );
 
   const [state, dispatch] = useReducer(reducer, SERVICEINITIAL);
 
@@ -138,6 +170,8 @@ export const ContextMain = ({ children }: { children: ReactNode }) => {
     <ContextProvider.Provider
       value={{
         titleState,
+        titlesort,
+        titlesortDispatch,
         toggle,
         setToggle,
         titleDispatch,
@@ -153,60 +187,3 @@ export const ContextMain = ({ children }: { children: ReactNode }) => {
     </ContextProvider.Provider>
   );
 };
-
-// import { createContext, useReducer } from "react";
-
-// type StartType = {
-//   theme: string;
-//   fontsize: number;
-// };
-
-// type ActionType = {
-//   type: "CHANGE_THEME" | "CHANGE_FONT";
-//   payload: number;
-// };
-
-// const INITIAL_STATE: StartType = {
-//   theme: "dark",
-//   fontsize: 16,
-// };
-
-// export const ContextTheme = createContext<{
-//   state: StartType;
-//   dispatch: React.Dispatch<ActionType>;
-// }>({
-//   state: INITIAL_STATE,
-//   dispatch: () => {},
-// });
-
-// const reducer = (state: StartType, action: ActionType) => {
-//   switch (action.type) {
-//     case "CHANGE_THEME":
-//       return {
-//         ...state,
-//         theme: state.theme === "dark" ? "light" : "dark",
-//       };
-//     case "CHANGE_FONT":
-//       return {
-//         ...state,
-//         fontsize: action.payload,
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
-// export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-//   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-//   return (
-//     <ContextTheme.Provider value={{ state, dispatch }}>
-//       {children}
-//     </ContextTheme.Provider>
-//   );
-// };
-
-// function searchOptions(userInput) {
-//     return options.filter(option =>
-//       option.toLowerCase().includes(userInput.toLowerCase())
-//     );
-//   }

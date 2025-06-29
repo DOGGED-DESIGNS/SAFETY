@@ -1,27 +1,49 @@
 "use client";
 
+import Editor from "@/components/Editor";
+import { Blogpost } from "@prisma/client";
 import Maxwrapper from "@/components/Maxwrapper";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
+import { Textarea } from "@/components/ui/textarea";
+import { ContextProvider } from "@/context/Context";
+import { useToast } from "@/hooks/use-toast";
+import { useUploadThing } from "@/lib/uploadthing";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { ImageDown, Loader, Loader2, Minus, Plus } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
+import Dropzone from "react-dropzone";
+import "react-quill/dist/quill.snow.css";
 import {
+  deletePost,
   finalupdateBlogpost,
   storageTitle,
   updateBlogPostAdvertImages,
+  updatePost,
 } from "./action";
-import React, { useEffect, useState, useContext } from "react";
-import "react-quill/dist/quill.snow.css";
-import { ContextProvider } from "@/context/Context";
-import { useMutation } from "@tanstack/react-query";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import Image from "next/image";
-import Dropzone from "react-dropzone";
-import { ImageDown, Loader, Minus, Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
-import Editor from "@/components/Editor";
-import { useUploadThing } from "@/lib/uploadthing";
-import { Progress } from "@/components/ui/progress";
+import { notFound, useParams, useSearchParams } from "next/navigation";
 
 export default function Makeme() {
+  // i want to get the query parameter
+  //step1: useQuery from tanstack to fetchdata when only when id is present.
+  // step2: use and if statment for conditional rendering when loadingstate is off
+  //step 3: notFound page if ther is and error
+
+  const searchParams = useSearchParams();
+
+  const id = searchParams.get("id");
+
+  const {
+    data: updatedata,
+    error,
+    isLoading: loadingUpdate,
+  } = useQuery({
+    queryKey: ["updatedata", id],
+    queryFn: async () => await updatePost({ id: id ?? "" }),
+    enabled: !!id,
+  });
+
   const { toast } = useToast();
   const { load, setLoad, progress, titleState } = useContext(ContextProvider);
 
@@ -50,9 +72,9 @@ export default function Makeme() {
       setTags(data.tags);
       setTextarr(data.description);
 
-      if (typeof window !== "undefined") {
-        localStorage.setItem("title", JSON.stringify(data));
-      }
+      // if (typeof window !== "undefined") {
+      //   localStorage.setItem("title", JSON.stringify(data));
+      // }
     },
   });
 
@@ -75,6 +97,32 @@ export default function Makeme() {
       },
     });
 
+  // this is the deletepost section
+
+  const { mutate: deleteposts, isPending: deletepending } = useMutation({
+    mutationKey: ["deletepostsection"],
+    mutationFn: deletePost,
+    onSuccess: (data) => {
+      toast({
+        title: "post deleted successfully",
+        description: `post has been deleted`,
+      });
+
+      setBlog("");
+      setQqv("");
+      setTags([]);
+      setTextarr("");
+      setLocalid("");
+    },
+    onError: (error) => {
+      toast({
+        title: "post deleted successfully",
+        description: `there was an error${error}`,
+        variant: "destructive",
+      });
+    },
+  });
+
   const { mutate: mutateFinal, isPending: isPendingFinal } = useMutation({
     mutationKey: ["finalUpload"],
     mutationFn: finalupdateBlogpost,
@@ -95,9 +143,9 @@ export default function Makeme() {
       setTags([]);
       setTextarr("");
       setLocalid("");
-      if (typeof window !== "undefined") {
-        localStorage.clear();
-      }
+      // if (typeof window !== "undefined") {
+      //   localStorage.clear();
+      // }
     },
   });
 
@@ -111,16 +159,14 @@ export default function Makeme() {
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const data = localStorage.getItem("title");
-      if (data) {
-        const finaldata = JSON.parse(data);
-        setTextarr(finaldata.description);
-        setBlog(finaldata.title);
-        setLocalid(finaldata.id);
-      }
+    if (updatedata) {
+      setBlog(updatedata.blog.title);
+      setQqv(updatedata.posts ?? "");
+      setTags(updatedata.blog.tags);
+      setTextarr(updatedata.blog.description);
+      setLocalid(updatedata.id);
     }
-  }, []);
+  }, [updatedata]);
 
   const onDropRejected = (fileRejections: any[]) => {
     const [file] = fileRejections;
@@ -136,8 +182,27 @@ export default function Makeme() {
     setDrag(false);
   };
 
+  if (loadingUpdate) {
+    return (
+      <Maxwrapper newClass=" h-lvh  justify-center items-center  flex flex-col">
+        <div className="  ">
+          <Loader className=" text-safeAccent font-bold  mx-auto text-center animate-spin" />
+          <p className="h4 text-center ">Loading...</p>;
+        </div>
+      </Maxwrapper>
+    );
+  }
+
+  if (!!error) {
+    return notFound();
+  }
+
   return (
     <Maxwrapper newClass=" max-w-screen-lg my-14">
+      {/* <div
+        className=" genclass my-2"
+        dangerouslySetInnerHTML={{ __html: qqv }}
+      /> */}
       <div className=" grid gap-4 md:grid-cols-3 grid-cols-1 ">
         <div className=" col-span-2 flex flex-col space-y-5">
           <h2 className=" text-center h2 capitalize my-6">
@@ -208,10 +273,22 @@ export default function Makeme() {
 
           {!localid && (
             <Button
-              onClick={() =>
-                addTitle({ describe: textarr, tags: tags, title: blog })
-              }
-              className="bg-safeAccent"
+              onClick={() => {
+                if (
+                  tags.length > 0 &&
+                  blog.trim() != "" &&
+                  textarr.trim() != ""
+                ) {
+                  addTitle({ describe: textarr, tags: tags, title: blog });
+                } else {
+                  toast({
+                    title: "Please fill all fields",
+                    variant: "destructive",
+                    description: "all fields must be filled",
+                  });
+                }
+              }}
+              className="bg-safeAccent hover:bg-safeAccent/80  h-12"
             >
               {isPending ? <Loader className="animate-spin" /> : "Proceed"}
             </Button>
@@ -260,22 +337,26 @@ export default function Makeme() {
 
         {localid && (
           <div>
-            <div className="flex gap-5">
-              {[1, 2, 3].map((_, i) => (
-                <div
-                  key={i}
-                  className="border border-safeAccent p-1 rounded-xl"
-                >
-                  <div className="rounded-xl relative overflow-hidden w-16 h-16">
-                    <Image
-                      src={"/img2.jpg"}
-                      alt="img"
-                      fill
-                      className="object-cover absolute"
-                    />
-                  </div>
-                </div>
-              ))}
+            <div className=" flex gap-5">
+              <Button
+                onClick={() => {
+                  deleteposts(localid);
+                }}
+                size={"lg"}
+                className="h-12 bg-transparent border border-safeDark hover:border-safeAccent h4 text-safeDark hover:bg-transparent hover:text-safeAccent "
+              >
+                {deletepending ? (
+                  <Loader2 className=" animate-spin" />
+                ) : (
+                  "Delete Post"
+                )}
+              </Button>
+              <Button
+                size={"lg"}
+                className="h-12 bg-safeAccent hover:bg-safeAccent/80 h4 text-white"
+              >
+                Update Post
+              </Button>
             </div>
 
             <div className="border rounded-xl p-2 flex flex-col justify-center items-center border-safeAccent h-28 my-6">
