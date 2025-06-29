@@ -67,6 +67,7 @@ export const storageTitle = async (bb: bb) => {
     revalidatePath("/");
     revalidatePath("/blog");
     revalidatePath(`/blog/${data.id}`);
+
     return data;
   } catch (error) {
     throw new Error(`this is the error ${error}`);
@@ -101,7 +102,7 @@ export const finalupdateBlogpost = async (
     });
     revalidatePath("/");
     revalidatePath("/blog");
-    revalidatePath(`/blog/${finalupdateblog.id}`);
+    revalidatePath(`/blog/${updateTDT.id}`);
     return blogupdate;
   } catch (error) {
     throw new Error(`${error}`);

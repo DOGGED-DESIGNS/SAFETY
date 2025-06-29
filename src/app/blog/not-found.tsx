@@ -1,10 +1,12 @@
-import { Metadata } from "next";
+import Maxwrapper from "@/components/Maxwrapper";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "404 not found",
-};
-
 export default function NOTFOUND() {
-  return <div> blog page not found </div>;
+  return (
+    <Maxwrapper newClass=" h-lvh flex-col flex justify-center items-center">
+      <div>
+        <h2 className=" text-center text-safeAccent p">PAGE NOT-FOUND</h2>
+      </div>
+    </Maxwrapper>
+  );
 }

@@ -1,11 +1,9 @@
 import Maxwrapper from "@/components/Maxwrapper";
+import { db } from "@/db/connect";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import React, { cache } from "react";
-import { Blogpost } from "@prisma/client";
-import { db } from "@/db/connect";
 
-export const revalidate = 60 ;
+export const revalidate = 60;
 
 export const dynamicParams = false;
 
@@ -19,7 +17,7 @@ export async function generateStaticParams() {
   return data.map((da) => ({ id: da.id }));
 }
 
-const getBlog = cache(async (id: string) => {
+const getBlog = async (id: string) => {
   const data = await db.blogpost.findUnique({
     where: { id: id },
     include: {
@@ -28,11 +26,11 @@ const getBlog = cache(async (id: string) => {
   });
 
   if (!data) {
-    notFound();
+    return notFound();
   }
 
   return data;
-});
+};
 
 export async function generateMetadata({
   params,
