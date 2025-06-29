@@ -1,4 +1,3 @@
-"use server"
 import React, { cache } from "react";
 import Maxwrapper from "./Maxwrapper";
 import Image from "next/image";
@@ -7,8 +6,7 @@ import { db } from "@/db/connect";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export const revalidate = 60 ;
-
+export const revalidate = 60;
 
 const getblogs = cache(async () => {
   try {
