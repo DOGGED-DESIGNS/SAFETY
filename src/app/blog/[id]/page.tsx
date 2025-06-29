@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 export const revalidate = 60;
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const data = await db.blogpost.findMany({
