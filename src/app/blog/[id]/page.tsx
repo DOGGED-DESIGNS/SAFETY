@@ -5,7 +5,7 @@ import React, { cache } from "react";
 import { Blogpost } from "@prisma/client";
 import { db } from "@/db/connect";
 
-export const revalidate = 60 * 60;
+export const revalidate = 60 ;
 
 export const dynamicParams = false;
 

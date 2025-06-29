@@ -20,6 +20,8 @@ interface datatype {
   };
 }
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Blog",
   description:
