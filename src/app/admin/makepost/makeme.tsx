@@ -151,7 +151,12 @@ export default function Makeme() {
 
   const { startUpload, isUploading } = useUploadThing("imageUploader", {
     onClientUploadComplete: ([data]) => {
-      updateBlogPostAdd({ id: localid, advertImage: data.url });
+      const key = data.key;
+      updateBlogPostAdd({
+        id: localid,
+        advertImage: data.url,
+        advertImagekey: data.key,
+      });
     },
     onUploadProgress: (e) => {
       setUploading(Number(e));
@@ -199,10 +204,10 @@ export default function Makeme() {
 
   return (
     <Maxwrapper newClass=" max-w-screen-lg my-14">
-      {/* <div
+      <div
         className=" genclass my-2"
         dangerouslySetInnerHTML={{ __html: qqv }}
-      /> */}
+      />
       <div className=" grid gap-4 md:grid-cols-3 grid-cols-1 ">
         <div className=" col-span-2 flex flex-col space-y-5">
           <h2 className=" text-center h2 capitalize my-6">

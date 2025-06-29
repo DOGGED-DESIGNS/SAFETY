@@ -19,6 +19,7 @@ interface finaluploadblogtype {
 interface uploadblogtype {
   id: string;
   advertImage: string;
+  advertImagekey: string;
 }
 
 interface bb {
@@ -126,6 +127,7 @@ export const updateBlogPostAdvertImages = async (
       },
       data: {
         advertImage: updateadvertimages.advertImage,
+        advertImagekdy: updateadvertimages.advertImagekey,
       },
     });
 
@@ -153,6 +155,8 @@ export async function deletePost(id: string) {
     });
 
     const utpi = new UTApi();
+
+    data?.advertImagekdy && utpi.deleteFiles(data?.advertImagekdy);
 
     for (const key of data?.blogpost ?? []) {
       for (const keys of key.imagekeys) {
@@ -191,7 +195,6 @@ export async function updatePost(info: { id: string }) {
     if (!data) {
       throw new Error("NO DATA FOUND");
     }
-
     return data;
   } catch (error) {
     throw new Error(`Error:${error}`);

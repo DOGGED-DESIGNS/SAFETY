@@ -36,6 +36,7 @@ model Blog {
   description String 
   authorImage String ?
   advertImage String ?
+  advertImagekdy String ?
   time DateTime @default(now())
   tags String[]
   blogpost Blogpost[]
