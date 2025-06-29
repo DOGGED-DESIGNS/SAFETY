@@ -64,10 +64,6 @@ export const storageTitle = async (bb: bb) => {
     });
     //  localStorage.setItem("test", data.description)
 
-    revalidatePath("/");
-    revalidatePath("/blog");
-    revalidatePath(`/blog/${data.id}`);
-
     return data;
   } catch (error) {
     throw new Error(`this is the error ${error}`);
