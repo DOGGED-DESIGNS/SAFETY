@@ -3,6 +3,10 @@ import { db } from "@/db/connect";
 
 import { UTApi } from "uploadthing/server";
 
+import { revalidatePath } from "next/cache";
+
+import { revalidateTag } from "next/cache";
+
 // this is the upload blog type
 
 interface finaluploadblogtype {
@@ -59,6 +63,10 @@ export const storageTitle = async (bb: bb) => {
       },
     });
     //  localStorage.setItem("test", data.description)
+
+    revalidatePath("/");
+    revalidatePath("/blog");
+    revalidatePath(`/blog/${data.id}`);
     return data;
   } catch (error) {
     throw new Error(`this is the error ${error}`);
@@ -91,7 +99,9 @@ export const finalupdateBlogpost = async (
         tags: finalupdateblog.tag,
       },
     });
-
+    revalidatePath("/");
+    revalidatePath("/blog");
+    revalidatePath(`/blog/${finalupdateblog.id}`);
     return blogupdate;
   } catch (error) {
     throw new Error(`${error}`);
@@ -130,7 +140,9 @@ export const updateBlogPostAdvertImages = async (
         advertImagekdy: updateadvertimages.advertImagekey,
       },
     });
-
+    revalidatePath("/");
+    revalidatePath("/blog");
+    revalidatePath(`/blog/${updateadvertimages.id}`);
     return uploadBlogdata;
   } catch (error) {
     throw new Error();
@@ -169,7 +181,9 @@ export async function deletePost(id: string) {
         id: id,
       },
     });
-
+    revalidatePath("/");
+    revalidatePath("/blog");
+    revalidatePath(`/blog/${id}`);
     return deletefile;
   } catch (error) {
     throw new Error(`error :${error}`);
@@ -195,6 +209,10 @@ export async function updatePost(info: { id: string }) {
     if (!data) {
       throw new Error("NO DATA FOUND");
     }
+
+    revalidatePath("/");
+    revalidatePath("/blog");
+    revalidatePath(`/blog/${info.id}`);
     return data;
   } catch (error) {
     throw new Error(`Error:${error}`);
